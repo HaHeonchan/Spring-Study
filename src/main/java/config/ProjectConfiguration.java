@@ -1,9 +1,12 @@
 package config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import service.CommentService;
 
 @Configuration
-@ComponentScan(basePackages = {"proxy", "service", "repository"})
+@ComponentScan(basePackages = {"service", "repository"})
 public class ProjectConfiguration {
+
 }

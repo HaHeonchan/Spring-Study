@@ -5,13 +5,9 @@ import org.springframework.stereotype.Service;
 import repository.CommentRepository;
 
 @Service
-public class CommentService {
+public class UserService {
     @Autowired
-    private final CommentRepository commentRepository;
-
-    public CommentService(CommentRepository commentRepository) {
-        this.commentRepository = commentRepository;
-    }
+    private CommentRepository commentRepository;
 
     public CommentRepository getCommentRepository() {
         return commentRepository;

@@ -4,16 +4,17 @@ import config.ProjectConfiguration;
 import model.Comment;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import service.CommentService;
+import service.UserService;
 
 public class Main {
     public static void main(String[] args) {
-        var context = new AnnotationConfigApplicationContext(ProjectConfiguration.class); //스프링 컨텍스트의 인스턴스 생성
+        var c = new AnnotationConfigApplicationContext(ProjectConfiguration.class);
 
-        var comment = new Comment();
-        comment.setText("우웨에에");
-        comment.setAuther("고라니");
+        var s1 = c.getBean(CommentService.class);
+        var s2 = c.getBean(UserService.class);
 
-        var commentService = context.getBean(CommentService.class);
-        commentService.publishComment(comment);
+        boolean b1 = s1.getCommentRepository() == s2.getCommentRepository();
+
+        System.out.println(b1);
     }
 }
