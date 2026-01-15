@@ -3,14 +3,16 @@ package com.example.demo;
 import config.ProjectConfiguration;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import service.CommentService;
+import service.UserService;
 
 public class Main {
     public static void main(String[] args) {
         var c = new AnnotationConfigApplicationContext(ProjectConfiguration.class);
-        System.out.println("befo commentservice");
+        var cs1 = c.getBean(CommentService.class);
+        var cs2 = c.getBean(UserService.class);
 
-        var service = c.getBean(CommentService.class);
+        boolean b = cs1.getCommentRepository() == cs2.getCommentRepository();
 
-        System.out.println("After rt Commentsercie");
+        System.out.println(b);
     }
 }
