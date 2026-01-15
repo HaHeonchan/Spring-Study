@@ -21,9 +21,10 @@ public class Main {
         comment.setText("고라니 귀여워");
         comment.setAuther("고라니");
 
-        String value = service.publishComment(comment);
-
-        logger.info(value);
+        service.publishComment(comment);
+        service.deleteComment(comment);
+        service.editComment(comment);
+//        logger.info(value);
 
     }
 }
