@@ -1,14 +1,17 @@
 package config;
 
-import org.springframework.beans.factory.config.BeanDefinition;
+import aspect.LoggingAspect;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
-import service.CommentService;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @Configuration
 @ComponentScan(basePackages = {"service", "repository"})
-public class ProjectConfiguration {
-
+@EnableAspectJAutoProxy
+public class ProjectConfig {
+    @Bean
+    public LoggingAspect aspect() {
+        return new LoggingAspect();
+    }
 }

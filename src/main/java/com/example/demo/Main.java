@@ -1,18 +1,29 @@
 package com.example.demo;
 
-import config.ProjectConfiguration;
+import config.ProjectConfig;
+import model.Comment;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import service.CommentService;
 import service.UserService;
 
+import java.nio.file.LinkOption;
+import java.util.logging.Logger;
+
 public class Main {
+
+    private static Logger logger = Logger.getLogger(Main.class.getName());
+
     public static void main(String[] args) {
-        var c = new AnnotationConfigApplicationContext(ProjectConfiguration.class);
-        var cs1 = c.getBean(CommentService.class);
-        var cs2 = c.getBean(UserService.class);
+        var c = new AnnotationConfigApplicationContext(ProjectConfig.class);
+        var service = c.getBean(CommentService.class);
+        Comment comment = new Comment();
 
-        boolean b = cs1.getCommentRepository() == cs2.getCommentRepository();
+        comment.setText("고라니 귀여워");
+        comment.setAuther("고라니");
 
-        System.out.println(b);
+        String value = service.publishComment(comment);
+
+        logger.info(value);
+
     }
 }
